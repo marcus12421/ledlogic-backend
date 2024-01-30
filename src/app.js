@@ -13,7 +13,7 @@ import errorHandler from "./middlewares/Error.js";
 const app = express();
 app.use(
   cors({
-    origin: `${process.env.DOMAIN}`,
+    origin: `https://discountshippingcanada.com`,
     credentials: true,
   })
 );
