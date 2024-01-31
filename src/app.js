@@ -13,7 +13,7 @@ import errorHandler from "./middlewares/Error.js";
 const app = express();
 app.use(
   cors({
-    origin: `https://discountshippingcanada.com`,
+    origin: [`https://discountshippingcanada.com`, "http://localhost:3000"],
     credentials: true,
   })
 );
