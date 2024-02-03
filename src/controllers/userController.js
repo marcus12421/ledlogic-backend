@@ -148,6 +148,33 @@ export const resetPassword = CatchAsyncError(async (req, res, next) => {
   sentToken(user, 200, res);
 });
 
+// UPDATE USER DETAILS - LoggedIn User
+export const updateUserInfo = CatchAsyncError(async (req, res, next) => {
+  const { params, body } = req;
+
+  let user = await User.findById(params.userId);
+
+  user = await User.findByIdAndUpdate(params.userId, body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+    message: "UserInfo has been updated successfully.",
+  });
+});
+
+// ====================================================
+// ====================================================
+// ====================================================
+// ====================================================
+// ====================================================
+// ====================================================
+// ====================================================
+
 // GET USER Details - Admin / User
 export const getUserDetaila = CatchAsyncError(async (req, res, next) => {
   const { userId } = req.params;
@@ -177,21 +204,6 @@ export const getAllUsers = CatchAsyncError(async (req, res, next) => {
     success: true,
     users,
   });
-});
-
-// UPDATE USER DETAILS - LoggedIn User
-export const updateUser = CatchAsyncError(async (req, res, next) => {
-  const { params, body } = req;
-
-  const user = await User.findById(params.userId);
-
-  user = await User.findByIdAndUpdate(params.id, body, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
-
-  res.status(200).json({ success: true, user });
 });
 
 // UPDATE User Password - LoggedIn User

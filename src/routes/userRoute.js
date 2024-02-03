@@ -9,6 +9,7 @@ import {
   getUserDetaila,
   getAllUsers,
   loadUser,
+  updateUserInfo,
 } from "../controllers/userController.js";
 import {
   authorizeRoles,
@@ -27,6 +28,15 @@ router.get("/logout", logOut);
 // load User
 router.get("/load-user", isAuthenticatedUser, loadUser);
 
+// Update a User Details
+router.patch("/update-user-info/:userId", updateUserInfo);
+
+// =====================================================================
+// =====================================================================
+// =====================================================================
+// =====================================================================
+// =====================================================================
+
 // forget Password / Reset Password
 router.post("/password/forgot", forgotPassword);
 router.put("/password/reset/:token", resetPassword);
@@ -36,8 +46,5 @@ router.get("/user/:userId", isAuthenticatedUser, getUserDetaila);
 
 // Get all the users
 router.get("/users", isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
-
-// Update a User Details
-router.post("/user/:userId", isAuthenticatedUser, getAllUsers);
 
 export default router;

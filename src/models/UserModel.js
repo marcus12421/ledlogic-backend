@@ -41,29 +41,42 @@ const userModel = mongoose.Schema({
     type: String,
     default: "user",
   },
+  residential: {
+    type: Boolean,
+    default: false,
+  },
 
   address: {
     address1: {
       type: String,
-      // required: [true, "Address is required."],
     },
     address2: {
       type: String,
     },
+    apptNo: {
+      type: String,
+    },
     city: {
       type: String,
-      // required: [true, "City is required."],
     },
     zip: {
       type: String,
-      // required: [true, "Zip is required."],
     },
     province: {
-      type: String,
+      label: {
+        type: String,
+      },
+      value: {
+        type: String,
+      },
     },
     country: {
-      type: String,
-      // required: [true, "Country is required."],
+      label: {
+        type: String,
+      },
+      value: {
+        type: String,
+      },
     },
   },
   socialLinks: {
