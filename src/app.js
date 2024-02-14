@@ -11,10 +11,20 @@ import user from "./routes/userRoute.js";
 import errorHandler from "./middlewares/Error.js";
 
 const app = express();
-app.use((_req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
+app.use((req, res, next) => {
+  const allowedOrigins = [
+    "http://localhost:3000",
+    "https://dev.discountshippingcanada.com",
+    "https://discountshippingcanada.com",
+  ];
+  const origin = req.headers.origin;
 
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 app.use(
