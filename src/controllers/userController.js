@@ -58,12 +58,22 @@ export const logOut = CatchAsyncError(async (req, res, next) => {
 
 // LOAD USER
 export const loadUser = CatchAsyncError(async (req, res, next) => {
-  const user = req.user;
 
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  try {
+    const user = req.user;
+  
+    res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.cookie("token", null, {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+  }
 });
 
 // FORGOT PASSWORD
