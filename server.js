@@ -4,6 +4,7 @@ import connectDatabase from "./src/config/database.js";
 
 // ********* Handling Uncaught Exception **********
 process.on("uncaughtException", (err) => {
+  console.log(err)
   console.log(`Error: ${err.message}`);
   console.log("Shutting down the server due to Uncaught Exception");
 

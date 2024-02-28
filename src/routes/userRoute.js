@@ -21,7 +21,6 @@ const router = express.Router();
 // register
 router.post("/register", register);
 
-console.log("third")
 // login / logout
 router.post("/login", login);
 router.get("/logout", logOut);

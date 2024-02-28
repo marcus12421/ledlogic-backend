@@ -10,8 +10,6 @@ import user from "./routes/userRoute.js";
 // middlewares Imports
 import errorHandler from "./middlewares/Error.js";
 
-console.log("first")
-
 const app = express();
 app.use((req, res, next) => {
   const allowedOrigins = [
@@ -43,7 +41,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-console.log("secound")
 // add routes
 app.use("/api/v1/user", user);
 app.use("/api/v1", products);
