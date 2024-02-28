@@ -26,19 +26,23 @@ export const login = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorHandler("Please enter email and password", 400));
+    return next(new ErrorHandler("Please enter email and password!", 400));
   }
+  console.log('>>>1')
 
   const user = await User.findOne({ email }).select("+password");
+  console.log('>>>2')
 
   if (!user) return next(new ErrorHandler("Invalid Email or Password", 401));
 
   const isPasswordMatch = user.comparePassword(password);
+  console.log('>>>3')
 
   if (!isPasswordMatch)
     return next(new ErrorHandler("Invalid Email or Password", 401));
 
   sentToken(user, 200, res);
+  console.log('>>>4')
 });
 
 // LOGOUT User
