@@ -45,6 +45,7 @@ router.put("/password/reset/:token", resetPassword);
 router.get("/user/:userId", isAuthenticatedUser, getUserDetaila);
 
 // Get all the users
-router.get("/users", isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
+router.get("/users", getAllUsers);
+// isAuthenticatedUser, authorizeRoles("admin"),
 
 export default router;

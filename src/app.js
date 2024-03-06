@@ -44,6 +44,12 @@ app.use(cookieParser());
 // add routes
 app.use("/api/v1/user", user);
 app.use("/api/v1", products);
+app.use("/api/v1/testing", (req, res) => {
+  res.json({
+    success: true,
+    messgae: 'Working'
+  })
+});
 
 // middleware for error
 app.use(errorHandler);
